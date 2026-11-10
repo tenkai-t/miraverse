@@ -91,7 +91,13 @@ function compose(c,e,a,f){const d=D.chars[c],AA=d.anims[a],fr=AA[f%AA.length],ox
 
 function draw(cv,G,sc){const H=G.length,W=G[0].length;cv.width=W*sc;cv.height=H*sc;const x=cv.getContext('2d');x.clearRect(0,0,cv.width,cv.height);
  for(let y=0;y<H;y++)for(let i=0;i<W;i++){if(G[y][i]){x.fillStyle=G[y][i];x.fillRect(i*sc,y*sc,sc,sc)}else{let o=false;for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1]]){const xx=i+a,yy=y+b;if(xx>=0&&xx<W&&yy>=0&&yy<H&&G[yy][xx]){o=true;break}}if(o){x.fillStyle='#2a1f3d';x.fillRect(i*sc,y*sc,sc,sc)}}}}
-function loop(){clearTimeout(timer);const fr=D.chars[ch].anims[an];fi=fi%fr.length;const G=compose(ch,{},an,fi);const wide=G[0].length>40;draw(big,G,wide?6:9);draw(small,G,wide?2:3);const d=fr[fi].d;fi++;timer=setTimeout(loop,d)}
+function loop(){clearTimeout(timer);const fr=D.chars[ch].anims[an];fi=fi%fr.length;const G=compose(ch,{},an,fi);const wide=G[0].length>40;draw(big,G,wide?6:9);draw(small,G,wide?2:3);
+ // pin display sizes in JS: iOS Safari does not shrink a canvas's height with
+ // its width, which made tall sprites spill out of the stage top and bottom
+ try{const avail=document.querySelector('.stage').clientWidth-28;
+ const bw=Math.min(big.width,Math.floor(avail*0.74));big.style.width=bw+'px';big.style.height=Math.round(bw*big.height/big.width)+'px';
+ const sw=Math.min(small.width,avail-bw-10);small.style.width=sw+'px';small.style.height=Math.round(sw*small.height/small.width)+'px';}catch(e){}
+ const d=fr[fi].d;fi++;timer=setTimeout(loop,d)}
 function thumb(c,id){const cells=D.chars[c].items[id];const xs=cells.map(a=>a[0]),ys=cells.map(a=>a[1]);const x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
  const w=x1-x0+3,h=y1-y0+3;const G=Array.from({length:h},()=>Array(w).fill(null));cells.forEach(([x,y,k])=>G[y-y0+1][x-x0+1]=D.pal[k]);
  const cv=document.createElement('canvas');const sc=Math.max(1,Math.floor(Math.min(120/w,44/h)));cv.width=w*sc;cv.height=h*sc;const x=cv.getContext('2d');
