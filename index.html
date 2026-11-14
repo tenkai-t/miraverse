@@ -323,7 +323,7 @@ function buildMap8(){const M=Array.from({length:MH},()=>Array(MW).fill('.'));for
  [[5,4],[13,8],[7,15],[3,9]].forEach(([x,y])=>{if(M[y][x]==='.')M[y][x]=','});
  for(let y=1;y<=16;y++){if(M[y][10]==='.'||M[y][10]===',')M[y][10]='='}return M}
 const OBJ8=[{id:'tablet8',x:5,y:14,solid:true},{id:'lakeSpot',x:11,y:12},{id:'iceFlower',x:14,y:11},{id:'iceWall',x:10,y:6},{id:'chest8',x:10,y:3,solid:true},{id:'gate',x:9,y:0,w:2}];
-const AREAS={1:{build:buildMap1,objs:OBJ1,start:[10,15],to:[14*TS+HT,12*TS+FT],back:[10*TS+6,12*TS+FT+4],name:'ほしのはらっぱ'},2:{build:buildMap2,objs:OBJ2,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'しずくのどうくつ'},3:{build:buildMap3,objs:OBJ3,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'てんびんのおか'},4:{build:buildMap4,objs:OBJ4,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'でんきの回廊'},5:{build:buildMap5,objs:OBJ5,start:[10,15],to:[4*TS+HT,12*TS+FT],back:[8*TS+HT,13*TS+FT],name:'コンパスの森'},6:{build:buildMap6,objs:OBJ6,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'じしゃくの山'},7:{build:buildMap7,objs:OBJ7,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'ことばの橋'},8:{build:buildMap8,objs:OBJ8,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'こおりの湖'}};
+const AREAS={1:{build:buildMap1,objs:OBJ1,start:[10,15],to:[14*TS+HT,12*TS+FT],back:[10*TS+6,12*TS+FT+4],name:'ひかりの はらっぱ'},2:{build:buildMap2,objs:OBJ2,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'かずの どうくつ'},3:{build:buildMap3,objs:OBJ3,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'てんびんのおか'},4:{build:buildMap4,objs:OBJ4,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'でんきの回廊'},5:{build:buildMap5,objs:OBJ5,start:[10,15],to:[4*TS+HT,12*TS+FT],back:[8*TS+HT,13*TS+FT],name:'コンパスの森'},6:{build:buildMap6,objs:OBJ6,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'じしゃくの山'},7:{build:buildMap7,objs:OBJ7,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'ことばの橋'},8:{build:buildMap8,objs:OBJ8,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'こおりの湖'}};
 let AREA=EX.area||1,MAP=AREAS[AREA].build(),OBJ=AREAS[AREA].objs;
 function gateOpen(){const f=EX.f;return AREA===1?f.gate:AREA===2?f.door2:AREA===3?f.door3:AREA===4?f.door4:AREA===5?f.door5:AREA===6?f.door6:AREA===7?f.door7:f.door8}
 function farF(){return AREA===2?EX.f.far:!!EX.f['far'+AREA]}
@@ -531,7 +531,7 @@ function exUpdate(dt){if(fly){stepFly(dt);animChars(dt);return}
  order.forEach((c,i)=>{if(i===0)return;const p=P(c);const tr=trail[Math.max(0,trail.length-1-i*FOL)]||[L.x,L.y];const ddx=tr[0]-p.x,ddy=tr[1]-p.y,d=Math.hypot(ddx,ddy);
   if(d>1.2){const k=Math.min(1,dt/90);p.x+=ddx*k;p.y+=ddy*k;p.moving=true;if(Math.abs(ddx)>.4)p.face=ddx>0?1:-1;p.view=Math.abs(ddy)>Math.abs(ddx)*.7?(ddy<0?'up':'down'):'side'}else p.moving=false});
  if(gateOpen()&&tileAt(Math.floor(L.x/TS),Math.floor((L.y-18)/TS))==='G'&&!dlg){
-  const n=AREA,ck=n===1?'cleared':'cleared'+n,nx={1:'しずくのどうくつ',2:'てんびんのおか',3:'でんきの回廊',4:'コンパスの森',5:'じしゃくの山',6:'ことばの橋',7:'こおりの湖'}[n];
+  const n=AREA,ck=n===1?'cleared':'cleared'+n,nx={1:'かずの どうくつ',2:'てんびんのおか',3:'でんきの回廊',4:'コンパスの森',5:'じしゃくの山',6:'ことばの橋',7:'こおりの湖'}[n];
   if(n<8){if(!EX.f[ck]){EX.f[ck]=true;if(n===1)addNote('gate');for(const c in EX.stats){addStat(c,'c',3);EX.stats[c].b+=2}saveEx();sfx('gate');
      say(['門を くぐると、まばゆい ひかりの むこうに','あたらしい せかい「'+nx+'」が ひろがって いた…!','つぎの せかいへ いってみる?'],['つぎのせかいへ','ここにのこる'],k=>{if(k===0)setArea(n+1);else{L.y+=42;trail.push([L.x,L.y])}})}
    else say(['つぎの せかいへ いく?'],['いく','やめる'],k=>{if(k===0)setArea(n+1);else{L.y+=42;trail.push([L.x,L.y])}})}
@@ -668,7 +668,7 @@ function goalText(){const f=EX.f;if(AREA===1){if(f.cleared)return 'もくひょ�
  if(AREA===6){if(f.cleared6)return 'じしゃくの山 クリア!';if(f.door6)return 'もくひょう: ひらいた 山の門へ すすもう';return 'もくひょう: 鉄のかぎを 見つけよう（磁石 '+(f.mag?'○':'×')+'　かぎ '+(f.key6?'○':'×')+'）'}
  if(AREA===7){if(f.cleared7)return 'ことばの橋 クリア!';if(f.door7)return 'もくひょう: ひらいた 橋の門へ すすもう';const n=(f.w1?1:0)+(f.w2?1:0)+(f.w3?1:0);return 'もくひょう: しりとりを つないで わたろう（'+n+'/3）'}
  if(AREA===8){if(f.cleared8)return 'こおりの湖 クリア!';if(f.door8)return 'もくひょう: ひらいた 湖の門へ すすもう';return 'もくひょう: 星の実を 取って 氷の門を ひらこう（実 '+(f.fruit8?'○':'×')+'　氷の壁 '+(f.melt8?'○':'×')+'）'}
- if(f.cleared2)return 'しずくのどうくつ クリア!';if(f.door2)return 'もくひょう: ひらいた ひかりの とびらへ';return 'もくひょう: とびらを ひらこう（かぎ '+(f.key?'○':'×')+'　きそく '+(f.read2?'○':'×')+'　たにを こえた '+(f.far?'○':'×')+'）'}
+ if(f.cleared2)return 'かずの どうくつ クリア!';if(f.door2)return 'もくひょう: ひらいた ひかりの とびらへ';return 'もくひょう: とびらを ひらこう（かぎ '+(f.key?'○':'×')+'　きそく '+(f.read2?'○':'×')+'　たにを こえた '+(f.far?'○':'×')+'）'}
 let ac=null;function sfx(t){if(EX.mute)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const seqs={ok:[[660,.08],[880,.1],[1175,.14]],pick:[[880,.07],[1320,.12]],bad:[[220,.14],[165,.2]],gate:[[523,.1],[659,.1],[784,.1],[1047,.3]]};let t0=ac.currentTime;for(const[fq,d]of seqs[t]){const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.value=fq;g.gain.setValueAtTime(.04,t0);g.gain.exponentialRampToValueAtTime(.001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d);t0+=d*.9}}catch(e){}}
 function exLoop(t){if(mode!=='explore')return;const dt=Math.min(80,t-(exLast||t));exLast=t;exUpdate(dt);exDraw(t);exRaf=requestAnimationFrame(exLoop)}
 /* --- ui --- */
