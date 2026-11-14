@@ -242,7 +242,7 @@ function setMode(m){mode=m;document.getElementById('pg1').hidden=m!=='dress';doc
 const TS=48,HT=24,FT=30,FB=11,FHt=8,TSTEP=5,FOL=5,MW=20,MH=18,VW=384,VH=480,PCOL={pink:'#ff8a95',yellow:'#ffe066',blue:'#5fa8f0'},PNAME={pink:'あけぼののかけら',yellow:'ひるのかけら',blue:'よるのかけら'};
 const NAMES2={ribbon:'リボン',witch:'まじょ',maid:'メイド',neko:'ねこみみ',miko:'みこ',kohaku:'コハク',astra:'アストラ'};
 const ALL7=['ribbon','witch','maid','neko','miko','kohaku','astra'];
-const ABIL={witch:'read',maid:'read',kohaku:'sniff',neko:'sniff',astra:'fly',miko:'fly',ribbon:'hint'};
+const ABIL={witch:'fly',maid:'read',kohaku:'sniff',neko:'sniff',astra:'fly',miko:'read',ribbon:'hint'};
 const ABNAME={read:'よむ',sniff:'かぐ',fly:'とぶ',hint:'ひらめき'};
 const can=(c,a)=>ABIL[c]===a;
 function newFlags(){return{read:false,bush:false,pink:false,yellow:false,blue:false,pl:[null,null,null],gate:false,island:false,cleared:false,read2:false,crack:false,key:false,far:false,door2:false,cleared2:false}}
