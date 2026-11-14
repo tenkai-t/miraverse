@@ -249,11 +249,12 @@ const ALL7=['ribbon','witch','maid','neko','miko','kohaku','astra'];
 const ABIL={ribbon:['read','hint'],witch:['read','fly'],maid:['read','fix'],neko:['read','sniff'],miko:['read','light'],kohaku:['sniff','ice'],astra:['fly','fire']};
 const ABNAME={read:'よむ',sniff:'かぐ',fly:'とぶ',hint:'ひらめき',fix:'なおす',light:'ひかり',ice:'こおり',fire:'ほのお'};
 const can=(c,a)=>ABIL[c].includes(a);
+const flyLine=back=>L==='witch'?(back?'ほうきに みんなを 乗せた。もどる?':'ほうきに みんなを 乗せて、ふわりと とびたった!'):(back?'みんなを つばさで つつんだ。もどる?':flyLine(false));
 function newFlags(){return{read:false,bush:false,pink:false,yellow:false,blue:false,pl:[null,null,null],gate:false,island:false,cleared:false,read2:false,crack:false,key:false,far:false,door2:false,cleared2:false,read3:false,st1:false,st2:false,st3:false,cmp:0,door3:false,cleared3:false,far3:false,read4:false,bat:false,wire:false,bulb:false,bulbB:false,bl:[null,null,null],door4:false,cleared4:false,far4:false,read5:false,mk1:false,mk2:false,mk3:false,key5:false,door5:false,cleared5:false,isle5:false,read6:false,mag:false,sort6:false,key6:false,door6:false,cleared6:false,far6:false,read7:false,w1:false,w2:false,w3f:false,w3:false,key7:false,door7:false,cleared7:false,read8:false,frz8:false,melt8:false,fruit8:false,door8:false,cleared8:false,read9:false,colR:false,colB:false,colY:false,mixP:false,mixG:false,mixO:false,door9:false,cleared9:false,far9:false,read10:false,stA:false,stB:false,stC:false,door10:false,cleared10:false,isle10:false}}
 function loadEx(){try{const r=JSON.parse(st.get('mv_explore1')||'null');if(r&&r.stats&&r.f){r.f=Object.assign(newFlags(),r.f);r.area=r.area||1;return fixEx(r)}}catch(e){}return{area:1,mute:false,stats:{},notes:[],f:newFlags()}}
 function fixEx(r){const o=['witch','kohaku','astra'];r.stats=r.stats||{};for(const c of ALL7)r.stats[c]=r.stats[c]||{k:0,c:0,b:0};if(!Array.isArray(r.order)||r.order.length!==3||!r.order.every(c=>ALL7.includes(c)))r.order=o;return r}
 let EX=fixEx(loadEx());function saveEx(){st.set('mv_explore1',JSON.stringify(EX))}
-const NOTES={tablet:['ひかりのじゅんばん','あさ(ピンク)→ひる(きいろ)→よる(あお)のじゅんで、ひかりがうまれる。'],bush:['においでさがす','しげみのおくに、かくれたみちがあった。コハクのはながてがかり。'],pink:['あけぼののかけら','かくれたみちのおくで、ピンクにひかるかけらをみつけた。'],yellow:['ひるのかけら','アストラのつばさでいけをこえて、きいろのかけらにとどいた。'],fail:['まちがいからまなぶ','ならべるじゅんばんがちがうと、ひかりがにごる。そらのうごきをおもいだそう。'],gate:['ほしのもん','3つのひかりを、うまれるじゅんにならべるともんがひらいた。'],tablet2:['ばいばいのきそく','1、2、4、8…は、まえのかずの2ばい。つぎは16。'],crack:['かべのわれめ','コハクのはなで、かべのわれめのおくに、かくれたくぼみをみつけた。'],key:['みずしょうのかぎ','くぼみのなかで、みずいろにひかるみずしょうをてにいれた。'],far:['たにをこえて','アストラがふかいたにをとびこえ、むこうのだんにたどりついた。'],door:['ひかりのとびら','かずのきそくをみつけて、ダイヤルをあわせたら、とびらがひらいた。'],fail2:['あてずっぽうのよわさ','かずをなんとなくえらぶと、ひかりがよわい。きそくをさがしてからためそう。'],
+const NOTES={tablet:['ひかりのじゅんばん','あさ(ピンク)→ひる(きいろ)→よる(あお)のじゅんで、ひかりがうまれる。'],bush:['においでさがす','しげみのおくに、かくれたみちがあった。においがてがかり。'],pink:['あけぼののかけら','かくれたみちのおくで、ピンクにひかるかけらをみつけた。'],yellow:['ひるのかけら','いけをこえて、きいろのかけらにとどいた。'],fail:['まちがいからまなぶ','ならべるじゅんばんがちがうと、ひかりがにごる。そらのうごきをおもいだそう。'],gate:['ほしのもん','3つのひかりを、うまれるじゅんにならべるともんがひらいた。'],tablet2:['ばいばいのきそく','1、2、4、8…は、まえのかずの2ばい。つぎは16。'],crack:['かべのわれめ','においをてがかりに、かべのわれめのおくに、かくれたくぼみをみつけた。'],key:['みずしょうのかぎ','くぼみのなかで、みずいろにひかるみずしょうをてにいれた。'],far:['たにをこえて','ふかいたにをとびこえて、むこうのだんにたどりついた。'],door:['ひかりのとびら','かずのきそくをみつけて、ダイヤルをあわせたら、とびらがひらいた。'],fail2:['あてずっぽうのよわさ','かずをなんとなくえらぶと、ひかりがよわい。きそくをさがしてからためそう。'],
 tablet3:['てんびんのきそく','てんびんは、重い方がさがる。2つずつくらべると、いちばん重いものがさがせる。'],stones:['3つのいし','まるい石、しかくい石、さんかくの石。重さは見た目ではわからない。'],scale:['くらべてわかる','てんびんで2つずつくらべると、重さのじゅんばんが見えてくる。'],fail3:['重さがたりない','台はいちばん重い石でないとうごかない。てんびんの結果をおもいだそう。'],door3:['重さの門','いちばん重い石を台にのせたら、重さで門がひらいた。'],
 tablet4:['でんきの輪','電池・導線・豆電球を、まるく輪につなぐと電気が流れて光る。'],fail4:['つながっていない','輪になっていないか、われた電球をつかっているみたい。部品を見なおそう。'],door4:['ひかりの回廊','回路がつながって、豆電球が回廊を明るくてらした。'],
 tablet5:['コンパスの見方','地図では、上が北（きた）、右が東（ひがし）、下が南（みなみ）、左が西（にし）。'],dig:['目印の石','コンパスと指示をたよりに、うまった目印の石を見つけた。'],key5:['森のかぎ','大きな木の宝箱から、森の門のかぎを手にいれた。'],door5:['森の門','目印を集めて宝箱をあけたら、森の門がひらいた。'],
@@ -396,11 +397,11 @@ function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){s
   else if(!can(L,'sniff'))say(['こんもりした しげみだ。','おくに なにか ありそうな…。はなの きく 子なら わかるかも?']);
   else say(['くんくん…。しげみの おくから あまい においが する!【かんさつ】','かきわけると、かくれた みちが あらわれた!【はっけん】'],null,()=>{f.bush=true;discover('bush',L,'k',2);sfx('ok')});break;
  case'fragP':f.pink=true;discover('pink',L,'c',1);sfx('pick');say(['あけぼのの かけらを みつけた!','ほんのり ピンクに ひかっている。']);break;
- case'pond':if(isleF()){if(can(L,'fly'))say(['みんなを つばさで つつんだ。もどる?'],['もどる','まだここにいる'],i=>{if(i===0)startFly(false)});else say(['ここから もどるには とべる 子の ちからが いる。'])}
+ case'pond':if(isleF()){if(can(L,'fly'))say([flyLine(true)],['もどる','まだここにいる'],i=>{if(i===0)startFly(false)});else say(['ここから もどるには とべる 子の ちからが いる。'])}
   else if(!can(L,'fly'))say(['いけの まんなかに なにかが きらりと ひかる。','およげないし…。とべる 子なら とどくかも?']);
-  else say(['いけの なかじまに きらりと ひかる ものが ある。【かんさつ】','みんなを つばさで つつんで とびたった!'],null,()=>startFly(true));break;
+  else say(['いけの なかじまに きらりと ひかる ものが ある。【かんさつ】',flyLine(false)],null,()=>startFly(true));break;
  case'fragY':if(isleF()&&!f.yellow){f.yellow=true;discover('yellow',L,'c',3);sfx('pick');say(['ひるの かけらを てにいれた!','まぶしい きいろに かがやいている。'])}
-  else if(isleF()){if(can(L,'fly'))say(['みんなを つばさで つつんだ。もどる?'],['もどる','まだここにいる'],i=>{if(i===0)startFly(false)});else say(['きしへ もどるには とべる 子の ちからが いる。'])}break;
+  else if(isleF()){if(can(L,'fly'))say([flyLine(true)],['もどる','まだここにいる'],i=>{if(i===0)startFly(false)});else say(['きしへ もどるには とべる 子の ちからが いる。'])}break;
  case'ped0':case'ped1':case'ped2':{const i=+o.id[3];const bag=['pink','yellow','blue'].filter(c=>f[c]&&!f.pl.includes(c));
   if(f.pl[i]){say([PNAME[f.pl[i]]+'が はまっている。'],['はずす','そのまま'],k=>{if(k===0){f.pl[i]=null;saveEx()}})}
   else if(!bag.length)say(['まるい くぼみの ある だいざ。','ひかる かけらを はめられそうだ。']);
@@ -415,8 +416,8 @@ function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){s
   else say(['くんくん…。かべの われめの おくに つめたい においが する!【かんさつ】','かべが くずれ、かくれた くぼみが あらわれた!【はっけん】'],null,()=>{f.crack=true;discover('crack',L,'k',2);sfx('ok')});break;
  case'keyc':f.key=true;discover('key',L,'c',1);sfx('pick');say(['みずしょうの かぎを みつけた!','つめたく すんだ みずいろに ひかっている。']);break;
  case'chasm':if(!can(L,'fly'))say(['ふかい たにが ひろがっている。','むこうがわに わたるには…とべる 子なら?']);
-  else say(['ふかい たにの むこうに だんが みえる。【かんさつ】','みんなを つばさで つつんで とびたった!'],null,()=>startFly(true));break;
- case'ledge':if(can(L,'fly'))say(['みんなを つばさで つつんだ。もどる?'],['もどる','まだここにいる'],i=>{if(i===0)startFly(false)});else say(['もどるには とべる 子の ちからが いる。']);break;
+  else say(['ふかい たにの むこうに だんが みえる。【かんさつ】',flyLine(false)],null,()=>startFly(true));break;
+ case'ledge':if(can(L,'fly'))say([flyLine(true)],['もどる','まだここにいる'],i=>{if(i===0)startFly(false)});else say(['もどるには とべる 子の ちからが いる。']);break;
  case'dial':if(f.door2)say(['ダイヤルは 16を さしている。とびらは ひらいた。']);
   else if(!f.key)say(['かべの まるい ダイヤル。まんなかに かぎの くぼみが ある。','みずしょうの かぎが ひつようみたいだ。']);
   else say(['みずしょうの かぎを はめると、ダイヤルが ひかった。【かんさつ】','かずを あわせよう。いくつに する?【かせつ】'],['12','16','20'],i=>{
@@ -476,7 +477,7 @@ function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){s
   say(['くんくん…。土の 下に 石の におい!【かんさつ】','掘ると、星の マークの 目印の石が 出てきた!【はっけん】'],null,()=>{f[k]=true;discover('dig',L,'k',2);sfx('pick')});break}
  case'mk3':if(isleF()){const anyFly=order.some(c=>can(c,'fly'));
    if(!f.mk3){f.mk3=true;discover('dig',L,'c',2);sfx('pick');say(['小島で 目印の石を みつけた!','これで 目印は 3つ そろった!','岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)})}
-   else if(anyFly)say(['みんなを つばさで つつんだ。岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)});
+   else if(anyFly)say([order.find(c=>can(c,'fly'))==='witch'?'ほうきに みんなを 乗せた。岸へ もどる?':'みんなを つばさで つつんだ。岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)});
    else say(['岸へ もどるには、とべる 子が パーティに いる 必要が ある。'])}break;
  case'bigtree':{const n=(f.mk1?1:0)+(f.mk2?1:0)+(f.mk3?1:0);
   if(f.door5){say(['大きな木は しずかに 見守っている。','森の門は ひらいている。']);break}
@@ -565,7 +566,7 @@ function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){s
   else say(['『文』の 記号の 建物… 学校だ!【かんさつ】','先生が スタンプを 押して くれた!【はっけん】'],null,()=>{f.stA=true;discover('stamp',L,'c',2);sfx('pick')});break;
  case'bldPost':if(f.stB)say(['郵便局だ。','スタンプは もらった。']);
   else say(['『〒』の 記号の 建物… 郵便局だ!【かんさつ】','局員さんが スタンプを 押して くれた!【はっけん】'],null,()=>{f.stB=true;discover('stamp',L,'c',2);sfx('pick')});break;
- case'bldShrine':if(f.stC&&isleF()){const anyFly=order.some(c=>can(c,'fly'));if(anyFly)say(['神社だ。スタンプは もらった。','みんなを つばさで つつんだ。岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)});else say(['神社だ。','岸へ もどるには、とべる 子が パーティに いる 必要が ある。'])}
+ case'bldShrine':if(f.stC&&isleF()){const anyFly=order.some(c=>can(c,'fly'));if(anyFly)say(['神社だ。スタンプは もらった。',order.find(c=>can(c,'fly'))==='witch'?'ほうきに みんなを 乗せた。岸へ もどる?':'みんなを つばさで つつんだ。岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)});else say(['神社だ。','岸へ もどるには、とべる 子が パーティに いる 必要が ある。'])}
   else if(f.stC)say(['神社だ。','スタンプは もらった。']);
   else say(['鳥居の 形の 記号… 神社だ!【かんさつ】','お社の 前で スタンプを もらった!【はっけん】'],null,()=>{f.stC=true;discover('stamp',L,'c',2);sfx('pick')});break;
  case'board10':{const n=(f.stA?1:0)+(f.stB?1:0)+(f.stC?1:0);
