@@ -245,7 +245,7 @@ const ALL7=['ribbon','witch','maid','neko','miko','kohaku','astra'];
 const ABIL={ribbon:['read','hint'],witch:['read','fly'],maid:['read','fix'],neko:['read','sniff'],miko:['read','light'],kohaku:['sniff','ice'],astra:['fly','fire']};
 const ABNAME={read:'よむ',sniff:'かぐ',fly:'とぶ',hint:'ひらめき',fix:'なおす',light:'ひかり',ice:'こおり',fire:'ほのお'};
 const can=(c,a)=>ABIL[c].includes(a);
-function newFlags(){return{read:false,bush:false,pink:false,yellow:false,blue:false,pl:[null,null,null],gate:false,island:false,cleared:false,read2:false,crack:false,key:false,far:false,door2:false,cleared2:false,read3:false,st1:false,st2:false,st3:false,cmp:0,door3:false,cleared3:false,far3:false,read4:false,bat:false,wire:false,bulb:false,bulbB:false,bl:[null,null,null],door4:false,cleared4:false,far4:false,read5:false,mk1:false,mk2:false,mk3:false,key5:false,door5:false,cleared5:false,isle5:false,read6:false,mag:false,sort6:false,key6:false,door6:false,cleared6:false,far6:false,read7:false,w1:false,w2:false,w3f:false,w3:false,key7:false,door7:false,cleared7:false,read8:false,frz8:false,melt8:false,fruit8:false,door8:false,cleared8:false}}
+function newFlags(){return{read:false,bush:false,pink:false,yellow:false,blue:false,pl:[null,null,null],gate:false,island:false,cleared:false,read2:false,crack:false,key:false,far:false,door2:false,cleared2:false,read3:false,st1:false,st2:false,st3:false,cmp:0,door3:false,cleared3:false,far3:false,read4:false,bat:false,wire:false,bulb:false,bulbB:false,bl:[null,null,null],door4:false,cleared4:false,far4:false,read5:false,mk1:false,mk2:false,mk3:false,key5:false,door5:false,cleared5:false,isle5:false,read6:false,mag:false,sort6:false,key6:false,door6:false,cleared6:false,far6:false,read7:false,w1:false,w2:false,w3f:false,w3:false,key7:false,door7:false,cleared7:false,read8:false,frz8:false,melt8:false,fruit8:false,door8:false,cleared8:false,read9:false,colR:false,colB:false,colY:false,mixP:false,mixG:false,mixO:false,door9:false,cleared9:false,far9:false,read10:false,stA:false,stB:false,stC:false,door10:false,cleared10:false,isle10:false}}
 function loadEx(){try{const r=JSON.parse(st.get('mv_explore1')||'null');if(r&&r.stats&&r.f){r.f=Object.assign(newFlags(),r.f);r.area=r.area||1;return fixEx(r)}}catch(e){}return{area:1,mute:false,stats:{},notes:[],f:newFlags()}}
 function fixEx(r){const o=['witch','kohaku','astra'];r.stats=r.stats||{};for(const c of ALL7)r.stats[c]=r.stats[c]||{k:0,c:0,b:0};if(!Array.isArray(r.order)||r.order.length!==3||!r.order.every(c=>ALL7.includes(c)))r.order=o;return r}
 let EX=fixEx(loadEx());function saveEx(){st.set('mv_explore1',JSON.stringify(EX))}
@@ -255,7 +255,9 @@ tablet4:['でんきの輪','電池・導線・豆電球を、まるく輪につ�
 tablet5:['コンパスの見方','地図では、上が北（きた）、右が東（ひがし）、下が南（みなみ）、左が西（にし）。'],dig:['目印の石','コンパスと指示をたよりに、うまった目印の石を見つけた。'],key5:['森のかぎ','大きな木の宝箱から、森の門のかぎを手にいれた。'],door5:['森の門','目印を集めて宝箱をあけたら、森の門がひらいた。'],
 tablet6:['磁石の力','磁石にくっつくのは鉄だけ。木や石はくっつかない。'],magnet:['大きな磁石','砂の中から大きな磁石を見つけた。鉄を引き寄せられる。'],key6:['鉄のかぎ','磁石で崖の下から引き寄せた、鉄のかぎ。'],door6:['磁石の門','鉄のかぎで、山の門がひらいた。'],
 tablet7:['しりとりのきそく','前の言葉のさいごの音で始まる言葉をつなぐ。「ん」で終わる言葉は言えない。'],fail7:['石がグラグラ','言葉がつながっていないみたい。前の言葉のさいごの音を見よう。'],key7:['橋の宝箱','しりとりを最後までつないで、宝箱がひらいた。'],door7:['橋の門','言葉の橋をわたりきると、門がひらいた。'],
-tablet8:['水の姿','水は冷やすと氷に、温めると水にもどる。姿を変える水のふしぎ。'],freeze:['凍った湖','氷の力で湖が凍り、歩いてわたれるようになった。'],melt:['溶けた氷の壁','炎の力で、厚い氷の壁が溶けて道がひらいた。'],door8:['氷の門','星の実をはめて、氷の門がひらいた。']};
+tablet8:['水の姿','水は冷やすと氷に、温めると水にもどる。姿を変える水のふしぎ。'],freeze:['凍った湖','氷の力で湖が凍り、歩いてわたれるようになった。'],melt:['溶けた氷の壁','炎の力で、厚い氷の壁が溶けて道がひらいた。'],door8:['氷の門','星の実をはめて、氷の門がひらいた。'],
+tablet9:['色のまぜ方','赤と青で紫、青と黄で緑、赤と黄でオレンジ。色は混ぜると新しい色になる。'],mix:['新しい色','色水を2つ混ぜて、新しい色を作った。混ぜ方で色が変わる。'],door9:['にじの泉の門','紫・緑・オレンジの3色がそろい、泉の門がにじ色に光ってひらいた。'],
+tablet10:['地図記号','学校は「文」、郵便局は「〒」、神社は鳥居の形。地図記号は場所の目印。'],stamp:['村のスタンプ','地図記号をたよりに建物を見つけて、スタンプを集めた。'],door10:['村の門','スタンプが3つそろい、最後の記号クイズに答えて村の門がひらいた。']};
 function addNote(id){if(!EX.notes.includes(id))EX.notes.push(id)}
 function addStat(c,s,n){EX.stats[c][s]+=n}
 function bondAll(){for(const c in EX.stats)EX.stats[c].b+=1}
@@ -323,11 +325,27 @@ function buildMap8(){const M=Array.from({length:MH},()=>Array(MW).fill('.'));for
  [[5,4],[13,8],[7,15],[3,9]].forEach(([x,y])=>{if(M[y][x]==='.')M[y][x]=','});
  for(let y=1;y<=16;y++){if(M[y][10]==='.'||M[y][10]===',')M[y][10]='='}return M}
 const OBJ8=[{id:'tablet8',x:5,y:14,solid:true},{id:'lakeSpot',x:11,y:12},{id:'iceFlower',x:14,y:11},{id:'iceWall',x:10,y:6},{id:'chest8',x:10,y:3,solid:true},{id:'gate',x:9,y:0,w:2}];
-const AREAS={1:{build:buildMap1,objs:OBJ1,start:[10,15],to:[14*TS+HT,12*TS+FT],back:[10*TS+6,12*TS+FT+4],name:'ひかりの はらっぱ'},2:{build:buildMap2,objs:OBJ2,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'かずの どうくつ'},3:{build:buildMap3,objs:OBJ3,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'てんびんのおか'},4:{build:buildMap4,objs:OBJ4,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'でんきの回廊'},5:{build:buildMap5,objs:OBJ5,start:[10,15],to:[4*TS+HT,12*TS+FT],back:[8*TS+HT,13*TS+FT],name:'コンパスの森'},6:{build:buildMap6,objs:OBJ6,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'じしゃくの山'},7:{build:buildMap7,objs:OBJ7,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'ことばの橋'},8:{build:buildMap8,objs:OBJ8,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'こおりの湖'}};
+
+function buildMap9(){const M=Array.from({length:MH},()=>Array(MW).fill('.'));for(let x=0;x<MW;x++){M[0][x]='#';M[MH-1][x]='#'}for(let y=0;y<MH;y++){M[y][0]='#';M[y][MW-1]='#'}
+ M[0][9]='G';M[0][10]='G';for(let x=1;x<=18;x++){M[7][x]='v';M[8][x]='v'}
+ M[2][9]='~';M[2][11]='~';M[4][8]='~';M[4][12]='~';
+ [[3,3],[16,3],[6,5],[14,6],[2,15],[17,15],[7,12],[13,11]].forEach(([x,y])=>{if(M[y][x]==='.')M[y][x]='#'});
+ [[5,4],[15,12],[8,14],[12,15],[4,10]].forEach(([x,y])=>{if(M[y][x]==='.')M[y][x]=','});
+ for(let y=1;y<=16;y++){if(y!==7&&y!==8&&(M[y][10]==='.'||M[y][10]===','))M[y][10]='='}
+ for(let x=7;x<=13;x++)if(M[5][x]==='.'||M[5][x]===',')M[5][x]='=';for(let x=8;x<=12;x++)if(M[12][x]==='.'||M[12][x]===',')M[12][x]='=';return M}
+const OBJ9=[{id:'tablet9',x:5,y:13,solid:true},{id:'colR',x:15,y:14},{id:'spotB',x:3,y:11},{id:'chasm',x:10,y:9},{id:'ledge',x:10,y:6},{id:'colY',x:16,y:4},{id:'spring9',x:10,y:3,solid:true},{id:'gate',x:9,y:0,w:2}];
+function buildMap10(){const M=Array.from({length:MH},()=>Array(MW).fill('.'));for(let x=0;x<MW;x++){M[0][x]='#';M[MH-1][x]='#'}for(let y=0;y<MH;y++){M[y][0]='#';M[y][MW-1]='#'}
+ M[0][9]='G';M[0][10]='G';
+ for(let y=10;y<=15;y++)for(let x=12;x<=17;x++)M[y][x]='~';for(let y=11;y<=12;y++)for(let x=14;x<=15;x++)M[y][x]='i';
+ [[6,3],[7,3],[13,4],[5,9],[8,7],[17,3]].forEach(([x,y])=>{if(M[y][x]==='.')M[y][x]='#'});
+ [[4,7],[9,12],[6,15],[16,8],[3,12]].forEach(([x,y])=>{if(M[y][x]==='.')M[y][x]=','});
+ for(let y=1;y<=16;y++){if(M[y][10]==='.'||M[y][10]===',')M[y][10]='='}for(let x=3;x<=16;x++)if(M[6][x]==='.'||M[6][x]===',')M[6][x]='=';return M}
+const OBJ10=[{id:'tablet10',x:5,y:14,solid:true},{id:'bldSchool',x:3,y:4,solid:true},{id:'bldPost',x:16,y:5,solid:true},{id:'pond',x:11,y:12},{id:'bldShrine',x:14,y:11,solid:true},{id:'board10',x:10,y:2,solid:true},{id:'gate',x:9,y:0,w:2}];
+const AREAS={1:{build:buildMap1,objs:OBJ1,start:[10,15],to:[14*TS+HT,12*TS+FT],back:[10*TS+6,12*TS+FT+4],name:'ひかりの はらっぱ'},2:{build:buildMap2,objs:OBJ2,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'かずの どうくつ'},3:{build:buildMap3,objs:OBJ3,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'てんびんのおか'},4:{build:buildMap4,objs:OBJ4,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'でんきの回廊'},5:{build:buildMap5,objs:OBJ5,start:[10,15],to:[4*TS+HT,12*TS+FT],back:[8*TS+HT,13*TS+FT],name:'コンパスの森'},6:{build:buildMap6,objs:OBJ6,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'じしゃくの山'},7:{build:buildMap7,objs:OBJ7,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'ことばの橋'},8:{build:buildMap8,objs:OBJ8,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'こおりの湖'},9:{build:buildMap9,objs:OBJ9,start:[10,15],to:[10*TS+HT,5*TS+FT],back:[10*TS+HT,9*TS+FT],name:'にじの泉'},10:{build:buildMap10,objs:OBJ10,start:[10,15],to:[14*TS+HT,12*TS+FT],back:[11*TS+HT,12*TS+FT],name:'ちずきごうの村'}};
 let AREA=EX.area||1,MAP=AREAS[AREA].build(),OBJ=AREAS[AREA].objs;
-function gateOpen(){const f=EX.f;return AREA===1?f.gate:AREA===2?f.door2:AREA===3?f.door3:AREA===4?f.door4:AREA===5?f.door5:AREA===6?f.door6:AREA===7?f.door7:f.door8}
+function gateOpen(){const f=EX.f;return AREA===1?f.gate:AREA===2?f.door2:AREA===3?f.door3:AREA===4?f.door4:AREA===5?f.door5:AREA===6?f.door6:AREA===7?f.door7:AREA===8?f.door8:AREA===9?f.door9:f.door10}
 function farF(){return AREA===2?EX.f.far:!!EX.f['far'+AREA]}
-function isleF(){return AREA===1?EX.f.island:AREA===5?EX.f.isle5:AREA===8?EX.f.frz8:false}
+function isleF(){return AREA===1?EX.f.island:AREA===5?EX.f.isle5:AREA===8?EX.f.frz8:AREA===10?EX.f.isle10:false}
 function setArea(n){AREA=n;EX.area=n;EX.pos=null;MAP=AREAS[n].build();OBJ=AREAS[n].objs;mapCv=null;resetPos();saveEx();renderLeaders()}
 function tileAt(tx,ty){return(tx<0||ty<0||tx>=MW||ty>=MH)?'#':MAP[ty][tx]}
 function solidAt(px,py){const tx=Math.floor(px/TS),ty=Math.floor(py/TS);const t=tileAt(tx,ty);
@@ -351,7 +369,7 @@ function advance(){if(!dlg)return false;const last=dlg.i>=dlg.pages.length-1;if(
 /* --- interaction --- */
 function objC(o){return[(o.x+(o.w||1)/2)*TS,o.y*TS+HT]}
 function nearest(){const L=leader();let best=null,bd=TS*1.6;for(const o of OBJ){if(!objOn(o))continue;const[cx,cy]=objC(o);const d=Math.hypot(cx-L.x,cy-(L.y-18));if(d<bd){bd=d;best=o}}return best}
-function objOn(o){const f=EX.f;if(o.id==='fragP'&&f.pink)return false;if(o.id==='fragY'&&f.yellow&&!f.island)return false;if(o.id==='keyc'&&f.key)return false;if(o.id==='chasm'&&farF())return false;if(o.id==='ledge'&&!farF())return false;if(o.id==='stone3'&&f.st3)return false;if(o.id==='bat'&&f.bat)return false;if(o.id==='bulbB'&&f.bulbB)return false;if(o.id==='bulb'&&f.bulb)return false;if(o.id==='mk3'&&f.mk3)return false;if(o.id==='iceWall'&&f.melt8)return false;if(o.id==='iceFlower'&&f.fruit8)return false;if(o.id==='sandSpot'&&f.mag)return false;return true}
+function objOn(o){const f=EX.f;if(o.id==='fragP'&&f.pink)return false;if(o.id==='fragY'&&f.yellow&&!f.island)return false;if(o.id==='keyc'&&f.key)return false;if(o.id==='chasm'&&farF())return false;if(o.id==='ledge'&&!farF())return false;if(o.id==='stone3'&&f.st3)return false;if(o.id==='bat'&&f.bat)return false;if(o.id==='bulbB'&&f.bulbB)return false;if(o.id==='bulb'&&f.bulb)return false;if(o.id==='colR'&&f.colR)return false;if(o.id==='colY'&&f.colY)return false;if(o.id==='iceWall'&&f.melt8)return false;if(o.id==='iceFlower'&&f.fruit8)return false;if(o.id==='sandSpot'&&f.mag)return false;return true}
 function hintText(){const f=EX.f;if(AREA===1){if(f.gate)return 'ほしの もんが ひらいた。むこうへ いってみよう!';if(!f.blue)return 'ほそい 道の さきに いしぶみが ある。よむのが とくいな 子と いってみよう。';if(!f.pink)return 'ひだりの しげみが きになる。かぎ分けの とくいな 子が いると いいな。';if(!f.yellow)return 'いけの まんなかに ひかる ものが あった。とべる 子の ちからで!';return 'うえの 3つの だいざに、ひかる かけらを じゅんばんに ならべよう。'}
  if(AREA===3){if(f.door3)return '丘の門が ひらいた。むこうへ いってみよう!';if(!f.read3)return '入口近くの 石碑を、よめる 子と しらべよう。';const n=(f.st1?1:0)+(f.st2?1:0)+(f.st3?1:0);if(n<3)return 'においの する 場所と、谷の むこうで、石を あと '+(3-n)+'つ さがそう。';if(!f.cmp)return '丘の まんなかの てんびんで、石を 2つずつ くらべよう。';return 'てんびんで くらべた 結果を 思いうかべて、いちばん重い 石を 谷の むこうの 台に のせよう。'}
  if(AREA===4){if(f.door4)return '回廊が 明るく なった。門へ すすもう!';if(!f.read4)return '壁の 図を、よめる 子と しらべよう。';if(!f.bat)return '入口の 近くに 電池が 落ちて いないか さがそう。';if(!f.wire)return '草むらの 金属の においを、かげる 子と たどろう。';if(!f.bulb)return '谷の むこうに 本物の 豆電球が あるはず。とべる 子と!';return '北の 回路盤に 部品を 3つ はめよう。輪に なると 光るよ。'}
@@ -359,6 +377,8 @@ function hintText(){const f=EX.f;if(AREA===1){if(f.gate)return 'ほしの もん
  if(AREA===6){if(f.door6)return '山の門が ひらいた。むこうへ いってみよう!';if(!f.read6)return '入口近くの 石碑を、よめる 子と しらべよう。';if(!f.mag)return '西の 砂場を、かげる 子と 掘って みよう。大きな 磁石が あるかも。';if(!f.sort6)return '東の 落ち物の 場所で、磁石の 仕分けを ためそう。';if(!f.key6)return '谷の むこうの 崖の 上から、磁石で 鉄のかぎを 引き寄せよう。';return '門の 柱に 鉄のかぎを 差し込もう。'}
  if(AREA===7){if(f.door7)return '橋の門が ひらいた。むこうへ いってみよう!';if(!f.read7)return '入口近くの 立て札を、よめる 子と 読もう。';if(!f.w1)return '川の 飛び石で しりとり。『りんご』の つぎは?';if(!f.w2)return 'つぎの 石。『ごりら』の つぎは?';if(!f.w3)return '北側の 東の 草むらに、かくれた 石が ある。かげる 子と 探そう。';return '北東の 宝箱へ。さいごの しりとりが 待って いる。'}
  if(AREA===8){if(f.door8)return '湖の門が ひらいた。むこうへ いってみよう!';if(!f.read8)return '入口近くの 石碑を、よめる 子と しらべよう。';if(!f.frz8)return '湖の ほとりの 立て札で、氷の 特技を つかって みよう。';if(!f.fruit8)return '凍った 湖を わたって、小島の 星の 実を 取ろう。';if(!f.melt8)return '北の 氷の 壁を、炎の 特技で 溶かそう。';return '北の 洞の 宝箱に、星の 実を はめよう。'}
+ if(AREA===9){if(f.door9)return '泉の門が ひらいた。むこうへ いってみよう!';if(!f.read9)return '入口近くの 石碑を、よめる 子と しらべよう。';if(!f.colR)return '東の 広場で 赤の 色水を さがそう。';if(!f.colB)return '西の 花畑の においを、かげる 子と たどろう。青の 色水が あるかも。';if(!f.colY)return '谷の むこうで 黄の 色水を さがそう。とべる 子と!';const n=(f.mixP?1:0)+(f.mixG?1:0)+(f.mixO?1:0);if(n<3)return '北の 泉で 色水を 2つずつ 混ぜよう。（作った 色 '+n+'/3）';return '3色 そろった。門へ!'}
+ if(AREA===10){if(f.door10)return '村の門が ひらいた。むこうへ いってみよう!';if(!f.read10)return '入口近くの 地図看板を、よめる 子と 読もう。';if(!f.stA)return '『文』の 記号の 建物（学校）は 西側だ。探して みよう。';if(!f.stB)return '『〒』の 記号の 建物（郵便局）は 東側だ。';if(!f.stC)return '鳥居の 記号（神社）は 池の 小島。とべる 子と わたろう。';return 'スタンプは そろった。門の 掲示板で 最後の クイズだ。'}
  if(f.door2)return 'ひらいた ひかりの とびらへ すすもう!';if(!f.read2)return 'かべの もじを、よむのが とくいな 子と しらべよう。';if(!f.crack)return 'かべの われめが きになる。かぎ分けの とくいな 子で!';if(!f.far)return 'ふかい たにを とべる 子の ちからで こえよう。';return 'とびらの ダイヤルに みずしょうを はめて、かずを あわせよう。'}
 function discover(id,c,stat,n){addNote(id);if(c)addStat(c,stat,n);bondAll();saveEx()}
 function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){say(can(order[0],'hint')?['ひらめき!',hintText()]:['ここには なにも なさそうだ。']);return}const L=order[0],f=EX.f;
@@ -450,7 +470,10 @@ function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){s
   if(f[k]){say(['ここでは もう 目印の石を 掘り出した。']);break}
   if(!can(L,'sniff')){say(['地面が すこし もりあがって いる。','においの きく 子なら、下に 何か あるか わかるかも?']);break}
   say(['くんくん…。土の 下に 石の におい!【かんさつ】','掘ると、星の マークの 目印の石が 出てきた!【はっけん】'],null,()=>{f[k]=true;discover('dig',L,'k',2);sfx('pick')});break}
- case'mk3':f.mk3=true;discover('dig',L,'c',2);sfx('pick');say(['小島で 目印の石を みつけた!','これで 目印は 3つ そろった!']);break;
+ case'mk3':if(isleF()){const anyFly=order.some(c=>can(c,'fly'));
+   if(!f.mk3){f.mk3=true;discover('dig',L,'c',2);sfx('pick');say(['小島で 目印の石を みつけた!','これで 目印は 3つ そろった!','岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)})}
+   else if(anyFly)say(['みんなを つばさで つつんだ。岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)});
+   else say(['岸へ もどるには、とべる 子が パーティに いる 必要が ある。'])}break;
  case'bigtree':{const n=(f.mk1?1:0)+(f.mk2?1:0)+(f.mk3?1:0);
   if(f.door5){say(['大きな木は しずかに 見守っている。','森の門は ひらいている。']);break}
   if(n<3){say(['大きな木の 根元に 宝箱が ある。','星の マークの 目印が '+(3-n)+'つ 不足して いて、あかない。','（目印 '+n+'/3）']);break}
@@ -510,7 +533,44 @@ function interact(){if(advance())return;if(fly)return;const o=nearest();if(!o){s
  case'chest8':if(f.door8)say(['宝箱は あいて いる。','氷の 門は ひらいて いる。']);
   else if(!f.fruit8)say(['氷の 宝箱だ。','星の 形の くぼみが ある。島に あった 星の 実が ひつようみたいだ。']);
   else say(['星の 実を くぼみに はめると…','宝箱が 光り、氷の 門が ゆっくり ひらいていく!【はっけん】'],null,()=>{f.door8=true;discover('door8',null,'',0);for(const c in EX.stats)addStat(c,'c',2);saveEx();sfx('gate')});break;
- case'gate':say(gateOpen()?['とびらが ひらいている。','むこうがわへ すすもう。']:(AREA===1?['ほしの もんは とじている。','3つの だいざに ひかりを ならべると ひらきそうだ。']:AREA===2?['ひかりの とびらは とじている。','ダイヤルを あわせると ひらきそうだ。']:AREA===3?['丘の門は とじている。','重さの台に、いちばん重い 石を のせると ひらきそうだ。']:AREA===4?['回廊の門は とじている。','回路を つないで 明るく すると ひらきそうだ。']:AREA===5?['森の門は とじている。','大きな木の 宝箱に かぎが あるかも。']:AREA===6?['山の門は とじている。','鉄のかぎが ひつようだ。崖の 下に あるかも。']:AREA===7?['橋の門は とじている。','しりとりを つないで 宝箱を あけると ひらきそうだ。']:['湖の門は とじている。','北の 宝箱を あけると ひらきそうだ。']));break}}
+ case'tablet9':if(!can(L,'read'))say(['石碑に 色水の 絵が ほられている。','よむのが とくいな 子なら わかるかも?']);
+  else if(f.read9)say(['「赤と青で 紫、青と黄で 緑、赤と黄で オレンジ」','泉で 色水を 2つ 混ぜて、3色 作ろう。']);
+  else say(['石碑に 色の 絵が ある。【かんさつ】','「赤と 青を 混ぜると、何色に なる?」【かせつ】'],['紫（むらさき）','緑（みどり）','オレンジ'],i=>{
+   if(i===0){f.read9=true;discover('tablet9',L,'k',3);sfx('ok');say(['そう! 赤と 青で 紫。【はっけん】','色水を 3色 集めて、泉で 混ぜてみよう。'])}
+   else{addStat(L,'k',1);saveEx();sfx('bad');say(['…ちがうみたいだ。【じっけん】','絵の具を 混ぜた ときを 思いうかべよう。赤と 青だよ。'])}});break;
+ case'colR':f.colR=true;addStat(L,'c',1);saveEx();sfx('pick');say(['赤の 色水を みつけた!','小瓶に たっぷり 入って いる。']);break;
+ case'spotB':if(f.colB)say(['ここでは もう 青の 色水を 見つけた。']);
+  else if(!can(L,'sniff'))say(['花の においが 強い 場所だ。','においの きく 子なら、何か 見つけられるかも?']);
+  else say(['くんくん…。花の 中に 青く 光る 小瓶!【かんさつ】','青の 色水を みつけた!【はっけん】'],null,()=>{f.colB=true;addStat(L,'c',1);saveEx();sfx('pick')});break;
+ case'colY':f.colY=true;addStat(L,'c',1);saveEx();sfx('pick');say(['黄の 色水を みつけた!','これで 色水が 集まったかな?']);break;
+ case'spring9':{const CN={R:'赤',B:'青',Y:'黄'},held=['R','B','Y'].filter(k=>f['col'+k]);
+  if(f.door9){say(['泉は にじ色に 光って いる。','3色が そろって、門が ひらいた。']);break}
+  if(held.length<3){say(['不思議な 泉だ。','色水を 2つ 混ぜると、新しい 色が 生まれる。','色水が あと '+(3-held.length)+'色 たりない。']);break}
+  say(['泉で 色水を 混ぜよう。【かんさつ】','まず 1色目を えらぼう。'],held.map(k=>CN[k]),i=>{const rest=held.filter((_,j)=>j!==i);
+   say(['2色目を えらぼう。'],rest.map(k=>CN[k]),j=>{const pair=[held[i],rest[j]].sort().join(''),RES={RB:['紫（むらさき）','mixP','#b07fe0'],BY:['緑（みどり）','mixG','#5fbf7a'],RY:['オレンジ','mixO','#f08a3c']}[pair],nm=RES[0],fk=RES[1];
+    if(f[fk]){sfx('pick');say(['生まれたのは '+nm+'。','その 色は もう 作って ある。','門の パネルを 見て、まだの 色を 作ろう。'])}
+    else{f[fk]=true;discover('mix',L,'k',2);sfx('ok');
+     if(f.mixP&&f.mixG&&f.mixO){f.door9=true;discover('door9',null,'',0);for(const c in EX.stats)addStat(c,'c',2);saveEx();sfx('gate');say([nm+'が 生まれた!【はっけん】','紫・緑・オレンジ、3色が そろった!','泉が にじ色に 光り、門が ゆっくり ひらいていく…!'])}
+     else{say([nm+'が 生まれた!【はっけん】','泉の 水が '+nm+'に 染まった。','門の パネルが 1つ 光った。（作った 色 '+(+!!f.mixP+ +!!f.mixG+ +!!f.mixO)+'/3）'])}}})});break}
+ case'tablet10':if(!can(L,'read'))say(['村の 地図の 看板だ。','よむのが とくいな 子なら わかるかも?']);
+  else if(f.read10)say(['「学校は『文』、郵便局は『〒』、神社は 鳥居の 形」','地図記号を たよりに、建物を 探そう。']);
+  else say(['村の 地図に 記号が 書いて ある。【かんさつ】','「学校の 地図記号は、どれ?」【かせつ】'],['『文』の 形','『〒』の 形','鳥居の 形'],i=>{
+   if(i===0){f.read10=true;discover('tablet10',L,'k',3);sfx('ok');say(['そう! 学校は『文』の 記号。【はっけん】','村の 建物を 記号で 見分けて、スタンプを 集めよう。'])}
+   else{addStat(L,'k',1);saveEx();sfx('bad');say(['…ちがうみたいだ。【じっけん】','『〒』は 郵便局。学校は、学ぶ ことに 関係する 漢字だよ。'])}});break;
+ case'bldSchool':if(f.stA)say(['学校だ。','スタンプは もらった。']);
+  else say(['『文』の 記号の 建物… 学校だ!【かんさつ】','先生が スタンプを 押して くれた!【はっけん】'],null,()=>{f.stA=true;discover('stamp',L,'c',2);sfx('pick')});break;
+ case'bldPost':if(f.stB)say(['郵便局だ。','スタンプは もらった。']);
+  else say(['『〒』の 記号の 建物… 郵便局だ!【かんさつ】','局員さんが スタンプを 押して くれた!【はっけん】'],null,()=>{f.stB=true;discover('stamp',L,'c',2);sfx('pick')});break;
+ case'bldShrine':if(f.stC&&isleF()){const anyFly=order.some(c=>can(c,'fly'));if(anyFly)say(['神社だ。スタンプは もらった。','みんなを つばさで つつんだ。岸へ もどる?'],['もどる','まだ ここに いる'],i=>{if(i===0)startFly(false)});else say(['神社だ。','岸へ もどるには、とべる 子が パーティに いる 必要が ある。'])}
+  else if(f.stC)say(['神社だ。','スタンプは もらった。']);
+  else say(['鳥居の 形の 記号… 神社だ!【かんさつ】','お社の 前で スタンプを もらった!【はっけん】'],null,()=>{f.stC=true;discover('stamp',L,'c',2);sfx('pick')});break;
+ case'board10':{const n=(f.stA?1:0)+(f.stB?1:0)+(f.stC?1:0);
+  if(f.door10){say(['村の門は ひらいて いる。']);break}
+  if(n<3){say(['門の 掲示板だ。','『スタンプを 3つ 集めたら、最後の 記号クイズに 挑戦できる』','（スタンプ '+n+'/3）']);break}
+  say(['スタンプが 3つ そろった!【かんさつ】','最後の クイズ:「消防署の 地図記号は、どれ?」【かせつ】'],['まるに『消』の 字','『文』の 形','『〒』の 形'],i=>{
+   if(i===0){f.door10=true;discover('door10',null,'',0);for(const c in EX.stats)addStat(c,'c',2);saveEx();sfx('gate');say(['正解! 消防署は まるに『消』。【はっけん】','掲示板が 光り、村の門が ゆっくり ひらいていく…!'])}
+   else{addStat(L,'k',1);saveEx();sfx('bad');say(['…ちがうみたいだ。【じっけん】','消防は、火を 消す お仕事。記号にも その 漢字が 入って いるよ。'])}});break}
+ case'gate':say(gateOpen()?['とびらが ひらいている。','むこうがわへ すすもう。']:(AREA===1?['ほしの もんは とじている。','3つの だいざに ひかりを ならべると ひらきそうだ。']:AREA===2?['ひかりの とびらは とじている。','ダイヤルを あわせると ひらきそうだ。']:AREA===3?['丘の門は とじている。','重さの台に、いちばん重い 石を のせると ひらきそうだ。']:AREA===4?['回廊の門は とじている。','回路を つないで 明るく すると ひらきそうだ。']:AREA===5?['森の門は とじている。','大きな木の 宝箱に かぎが あるかも。']:AREA===6?['山の門は とじている。','鉄のかぎが ひつようだ。崖の 下に あるかも。']:AREA===7?['橋の門は とじている。','しりとりを つないで 宝箱を あけると ひらきそうだ。']:AREA===8?['湖の門は とじている。','北の 宝箱を あけると ひらきそうだ。']:AREA===9?['泉の門は とじている。','紫・緑・オレンジの 3色を 作ると ひらきそうだ。']:['村の門は とじている。','スタンプを 集めて、掲示板の クイズに 答えると ひらきそうだ。']));break}}
 function checkPed(){const f=EX.f;if(f.pl.some(x=>!x))return;const want=['pink','yellow','blue'];
  if(want.every((c,i)=>f.pl[i]===c)){f.gate=true;discover('gate',null,'',0);sfx('gate');for(const c in EX.stats)addStat(c,'c',2);saveEx();say(['3つの ひかりが ひとつに つながった!【はっけん】','ほしの もんが ゆっくりと ひらいていく…!'])}
  else{f.pl=[null,null,null];addStat(order[0],'k',1);addNote('fail');saveEx();sfx('bad');say(['ひかりが にごって はじけた…!【じっけん】','かけらは てもとに もどった。じゅんばんを かんがえなおそう。'])}}
@@ -520,7 +580,7 @@ function checkBoard(){const f=EX.f;if(f.bl.some(x=>!x))return;const want=['bat',
 function startFly(to){fly={t:0,to,from:party.map(p=>[p.x,p.y])};dir={x:0,y:0}}
 function stepFly(dt){fly.t+=dt;const u=Math.min(1,fly.t/1400);const AR=AREAS[AREA],tg=fly.to?AR.to:AR.back;
  order.forEach((c,i)=>{const p=P(c),fr=fly.from[party.indexOf(p)];const ox=(i-1)*28;p.x=fr[0]+(tg[0]+ox-fr[0])*u;p.y=fr[1]+(tg[1]-fr[1])*u;p.moving=true;p.an='walk'});
- if(u>=1){if(AREA===1)EX.f.island=fly.to;else if(AREA===5)EX.f.isle5=fly.to;else{EX.f['far'+AREA]=fly.to;if(AREA===2){EX.f.far=fly.to;if(fly.to)addNote('far')}}fly=null;sfx('ok');trail=[];for(let i=0;i<40;i++)trail.push([leader().x,leader().y]);saveEx()}}
+ if(u>=1){if(AREA===1)EX.f.island=fly.to;else if(AREA===5||AREA===10)EX.f['isle'+AREA]=fly.to;else{EX.f['far'+AREA]=fly.to;if(AREA===2){EX.f.far=fly.to;if(fly.to)addNote('far')}}fly=null;sfx('ok');trail=[];for(let i=0;i<40;i++)trail.push([leader().x,leader().y]);saveEx()}}
 /* --- update --- */
 function exUpdate(dt){if(fly){stepFly(dt);animChars(dt);return}
  const L=leader();let dx=dir.x,dy=dir.y;L.moving=false;
@@ -531,11 +591,11 @@ function exUpdate(dt){if(fly){stepFly(dt);animChars(dt);return}
  order.forEach((c,i)=>{if(i===0)return;const p=P(c);const tr=trail[Math.max(0,trail.length-1-i*FOL)]||[L.x,L.y];const ddx=tr[0]-p.x,ddy=tr[1]-p.y,d=Math.hypot(ddx,ddy);
   if(d>1.2){const k=Math.min(1,dt/90);p.x+=ddx*k;p.y+=ddy*k;p.moving=true;if(Math.abs(ddx)>.4)p.face=ddx>0?1:-1;p.view=Math.abs(ddy)>Math.abs(ddx)*.7?(ddy<0?'up':'down'):'side'}else p.moving=false});
  if(gateOpen()&&tileAt(Math.floor(L.x/TS),Math.floor((L.y-18)/TS))==='G'&&!dlg){
-  const n=AREA,ck=n===1?'cleared':'cleared'+n,nx={1:'かずの どうくつ',2:'てんびんのおか',3:'でんきの回廊',4:'コンパスの森',5:'じしゃくの山',6:'ことばの橋',7:'こおりの湖'}[n];
-  if(n<8){if(!EX.f[ck]){EX.f[ck]=true;if(n===1)addNote('gate');for(const c in EX.stats){addStat(c,'c',3);EX.stats[c].b+=2}saveEx();sfx('gate');
+  const n=AREA,ck=n===1?'cleared':'cleared'+n,nx={1:'かずの どうくつ',2:'てんびんのおか',3:'でんきの回廊',4:'コンパスの森',5:'じしゃくの山',6:'ことばの橋',7:'こおりの湖',8:'にじの泉',9:'ちずきごうの村'}[n];
+  if(n<10){if(!EX.f[ck]){EX.f[ck]=true;if(n===1)addNote('gate');for(const c in EX.stats){addStat(c,'c',3);EX.stats[c].b+=2}saveEx();sfx('gate');
      say(['門を くぐると、まばゆい ひかりの むこうに','あたらしい せかい「'+nx+'」が ひろがって いた…!','つぎの せかいへ いってみる?'],['つぎのせかいへ','ここにのこる'],k=>{if(k===0)setArea(n+1);else{L.y+=42;trail.push([L.x,L.y])}})}
    else say(['つぎの せかいへ いく?'],['いく','やめる'],k=>{if(k===0)setArea(n+1);else{L.y+=42;trail.push([L.x,L.y])}})}
-  else if(!EX.f.cleared8){EX.f.cleared8=true;for(const c in EX.stats){addStat(c,'c',3);EX.stats[c].b+=2}saveEx();sfx('gate');say(['湖の門の むこうは、星の 見える 雪原…。','【こおりの湖 クリア】 つづきは つぎの たびで!'],null,()=>{L.y+=42;trail.push([L.x,L.y])})}
+  else if(!EX.f.cleared10){EX.f.cleared10=true;for(const c in EX.stats){addStat(c,'c',3);EX.stats[c].b+=2}saveEx();sfx('gate');say(['村の門の むこうは、星の 見える 丘…。','【ちずきごうの村 クリア】 つづきは つぎの たびで!'],null,()=>{L.y+=42;trail.push([L.x,L.y])})}
   else{L.y+=42;trail.push([L.x,L.y])}}
  animChars(dt)}
 function animChars(dt){for(const p of party){const an=(p.moving?'walk':'idle')+vsuf(p.c,p.view);if(p.an!==an){p.an=an;p.fi=0;p.ft=0}const A=D.chars[p.c].anims[an];p.ft+=dt;if(p.ft>=A[p.fi%A.length].d){p.ft=0;p.fi=(p.fi+1)%A.length}}}
@@ -596,7 +656,7 @@ function makeMap(){const cv=mkCv(MW*TS,MH*TS),x=cv.getContext('2d'),cave=AREA===
   const s=treeSpr(Math.floor(hsh(tx,ty,24)*3));x.drawImage(s,X+24-31,Y+TS-76)}
  return cv}
 function drawObj(x,o,t){const X=o.x*TS,Y=o.y*TS,f=EX.f;const bob=Math.round(Math.sin(t/260)*2);
- if(o.id.startsWith('tablet')){const c2=o.id!=='tablet',lit={tablet:f.read,tablet2:f.read2,tablet3:f.read3,tablet4:f.read4,tablet5:f.read5,tablet6:f.read6,tablet7:f.read7,tablet8:f.read8}[o.id];const s=spr(o.id,38,56,g=>{const base=c2?'#5b5580':'#a9a4b8',lt=c2?'#7a72a0':'#c9c4d8',dk=c2?'#3a3560':'#7d7890';
+ if(o.id.startsWith('tablet')){const c2=o.id!=='tablet',lit={tablet:f.read,tablet2:f.read2,tablet3:f.read3,tablet4:f.read4,tablet5:f.read5,tablet6:f.read6,tablet7:f.read7,tablet8:f.read8,tablet9:f.read9,tablet10:f.read10}[o.id];const s=spr(o.id,38,56,g=>{const base=c2?'#5b5580':'#a9a4b8',lt=c2?'#7a72a0':'#c9c4d8',dk=c2?'#3a3560':'#7d7890';
    R_(g,base,3,6,32,48);R_(g,base,6,3,26,3);R_(g,lt,3,6,4,48);R_(g,lt,6,3,26,2);R_(g,dk,31,6,4,48);R_(g,dk,3,48,32,6);R_(g,dk,0,50,38,6);R_(g,lt,0,50,38,2);
    for(let k=0;k<7;k++)R_(g,dk,8+Math.floor(hsh(k,3,25)*20),10+k*5,4+k%3*2,1);R_(g,'#6fae6a',4,46,6,3);R_(g,'#6fae6a',26,50,5,2)});
   x.drawImage(s,X+5,Y-12);const gc=c2?['#8ec3ea','#8ec3ea','#8ec3ea']:['#ff8a95','#ffe066','#5fa8f0'],on=c2?[lit,lit,lit]:[f.read,f.read,f.blue];
@@ -620,7 +680,7 @@ function drawObj(x,o,t){const X=o.x*TS,Y=o.y*TS,f=EX.f;const bob=Math.round(Math
  else if(o.id==='stone3'||o.id==='mk3'){const s=spr('st'+o.id,40,36,g=>{if(o.id==='stone3'){R_(g,'#8a86a0',8,10,24,22);R_(g,'#a9a4b8',14,4,12,10);R_(g,'#6d6880',8,26,24,6)}else{R_(g,'#a9a4b8',10,12,20,18);R_(g,'#c9c4d8',10,12,20,4);R_(g,'#ffd24a',17,16,6,6)}});x.drawImage(s,X+4,Y+8+bob)}
  else if(o.id==='bat'){const s=spr('bat',30,36,g=>{R_(g,'#3fae6a',6,8,18,26);R_(g,'#2a7a48',6,30,18,4);R_(g,'#c9c4d8',11,3,8,5);R_(g,'#ffffff',13,14,4,10);R_(g,'#ffffff',11,18,8,3)});x.drawImage(s,X+9,Y+6+bob)}
  else if(o.id==='bulb'||o.id==='bulbB'){const brk=o.id==='bulbB';const s=spr('bl'+o.id,30,36,g=>{disc(g,brk?'#9aa4b0':'#ffe066',15,15,11);if(!brk){disc(g,'#fff4a8',12,11,5)}R_(g,'#7d7890',10,26,10,6);if(brk){R_(g,'#3a3560',10,8,2,10);R_(g,'#3a3560',16,12,2,9)}});if(!brk){x.globalAlpha=.3+.2*Math.sin(t/200);disc(x,'#ffe066',X+24,Y+20+bob,20);x.globalAlpha=1}x.drawImage(s,X+9,Y+4+bob)}
- else if(o.id==='spot1'||o.id==='spot2'||o.id==='dig1'||o.id==='dig2'||o.id==='wireSpot'||o.id==='sandSpot'){const got={spot1:f.st1,spot2:f.st2,dig1:f.mk1,dig2:f.mk2,wireSpot:f.wire,sandSpot:f.mag}[o.id];
+ else if(o.id==='spot1'||o.id==='spot2'||o.id==='dig1'||o.id==='dig2'||o.id==='wireSpot'||o.id==='sandSpot'||o.id==='spotB'){const got={spot1:f.st1,spot2:f.st2,dig1:f.mk1,dig2:f.mk2,wireSpot:f.wire,sandSpot:f.mag,spotB:f.colB}[o.id];
   if(!got){R_(x,'rgba(90,70,40,.5)',X+8,Y+30,32,8);R_(x,'rgba(120,95,55,.6)',X+14,Y+26,20,6);if(Math.sin(t/300+o.x)>0){R_(x,'#fff4a8',X+22,Y+14,3,3);R_(x,'#fff4a8',X+30,Y+20,2,2)}}}
  else if(o.id==='sign5'||o.id==='lakeSpot'){const s=spr('sign5',36,44,g=>{R_(g,'#7a4f2f',16,14,5,28);R_(g,'#a8744a',2,2,32,16);R_(g,'#c99a68',2,2,32,3);R_(g,'#5b3a20',8,8,20,2);R_(g,'#5b3a20',8,12,14,2)});x.drawImage(s,X+6,Y+2)}
  else if(o.id==='bigtree'){const s=treeSpr(1);x.drawImage(s,X-38,Y-84,124,152)}
@@ -641,6 +701,18 @@ function drawObj(x,o,t){const X=o.x*TS,Y=o.y*TS,f=EX.f;const bob=Math.round(Math
   if(open){x.globalAlpha=.35+.25*Math.sin(t/200);disc(x,'#ffd24a',X+24,Y+16,16);x.globalAlpha=1}}
  else if(o.id==='iceWall'){const s=spr('icewall',52,56,g=>{R_(g,'rgba(142,195,234,.9)',4,4,44,50);R_(g,'rgba(191,228,251,.9)',4,4,44,10);R_(g,'rgba(214,239,255,.95)',10,14,8,30);R_(g,'rgba(214,239,255,.8)',30,8,6,40);R_(g,'#ffffff',18,20,2,16);R_(g,'#ffffff',36,28,2,12)});x.drawImage(s,X-2,Y-8)}
  else if(o.id==='iceFlower'){x.globalAlpha=.35+.25*Math.sin(t/200);disc(x,'#7fe0d0',X+24,Y+22+bob,20);x.globalAlpha=1;const s=spr('iceflower',30,32,g=>{for(const[dx,dy]of[[15,8],[7,15],[23,15],[11,22],[19,22]])disc(g,'#7fe0d0',dx,dy,6);disc(g,'#fff4a8',15,15,5)});x.drawImage(s,X+9,Y+4+bob)}
+ else if(o.id==='colR'||o.id==='colY'){const col=o.id==='colR'?['#e0483e','#ff9a92','#8c2318']:['#ffd24a','#fff4a8','#d9a93a'];
+  const s=spr('cb'+o.id,26,36,g=>{R_(g,'#cfeeff',8,2,10,6);R_(g,col[0],5,8,16,24);R_(g,col[1],5,8,5,24);R_(g,col[2],5,28,16,4)});x.globalAlpha=.3+.2*Math.sin(t/200);disc(x,col[0],X+24,Y+20+bob,18);x.globalAlpha=1;x.drawImage(s,X+11,Y+4+bob)}
+ else if(o.id==='spring9'){disc(x,'#5fa8f0',X+24,Y+26,26);disc(x,'#8ec3ea',X+24,Y+26,19);disc(x,'#bfe4fb',X+24,Y+24,11);
+  const pc=[['#b07fe0',f.mixP],['#5fbf7a',f.mixG],['#f08a3c',f.mixO]];pc.forEach(([c,on],k)=>{x.fillStyle=on?c:'#4a4472';x.fillRect(X+8+k*14,Y-2,10,8);if(on){x.globalAlpha=.3+.2*Math.sin(t/200);x.fillRect(X+5+k*14,Y-5,16,14);x.globalAlpha=1}});
+  R_(x,'#ffd24a',X+22,Y+6,4,10);R_(x,'#ffd24a',X+19,Y+9,10,3)}
+ else if(o.id==='bldSchool'||o.id==='bldPost'||o.id==='bldShrine'){const s=spr('b'+o.id,52,52,g=>{
+   if(o.id==='bldShrine'){R_(g,'#d8505e',6,8,6,34);R_(g,'#d8505e',40,8,6,34);R_(g,'#d8505e',2,4,48,7);R_(g,'#b03040',2,16,48,5);R_(g,'#f5e6c4',16,26,20,16);R_(g,'#a8744a',16,26,20,3)}
+   else{R_(g,'#f5e6c4',6,18,40,26);R_(g,'#d8505e',2,8,48,12);R_(g,'#b03040',2,17,48,3);R_(g,'#8ec3ea',13,26,10,12);R_(g,'#8ec3ea',29,26,10,12);R_(g,'#a8744a',21,30,10,14)}});x.drawImage(s,X-2,Y-6);
+  x.fillStyle='#fff';x.fillRect(X+13,Y-16,22,14);x.fillStyle='#2a1f3d';x.font='bold 12px sans-serif';x.textAlign='center';x.fillText(o.id==='bldSchool'?'文':o.id==='bldPost'?'〒':'鳥居',X+24,Y-5);
+  const got=o.id==='bldSchool'?f.stA:o.id==='bldPost'?f.stB:f.stC;if(got){x.fillStyle='#e0483e';x.font='bold 13px sans-serif';x.fillText('済',X+40,Y+8)}}
+ else if(o.id==='board10'){const s=spr('board10',44,52,g=>{R_(g,'#a8744a',4,4,36,34);R_(g,'#c99a68',4,4,36,4);R_(g,'#f5e6c4',8,10,28,24);R_(g,'#7a4f2f',19,38,6,12)});x.drawImage(s,X+2,Y-6);
+  const st=[f.stA,f.stB,f.stC];st.forEach((on,k)=>{x.strokeStyle=on?'#e0483e':'#b8a888';x.lineWidth=2;x.beginPath();x.arc(X+15+k*9,Y+18,4,0,6.3);x.stroke()})}
  else if(o.id==='dial'){const s=spr('dial',48,52,g=>{R_(g,'#5b5580',6,10,36,40);R_(g,'#7a72a0',6,10,6,40);R_(g,'#3a3560',36,10,6,40);disc(g,'#3a3560',24,26,16);disc(g,'#5b5580',24,26,13);disc(g,'#2a1f3d',24,26,8);for(let k=0;k<8;k++){const a=k*Math.PI/4;R_(g,'#8ec3ea',Math.round(24+Math.cos(a)*14)-1,Math.round(26+Math.sin(a)*14)-1,2,2)}});
   x.drawImage(s,X,Y-10);const c=f.key?(f.door2?'#8ec3ea':'#7fe0d0'):'#3a3560';disc(x,c,X+25,Y+16,6);if(f.door2){x.globalAlpha=.4+.3*Math.sin(t/200);disc(x,'#8ec3ea',X+25,Y+16,16);x.globalAlpha=1}}}
 
@@ -668,6 +740,8 @@ function goalText(){const f=EX.f;if(AREA===1){if(f.cleared)return 'もくひょ�
  if(AREA===6){if(f.cleared6)return 'じしゃくの山 クリア!';if(f.door6)return 'もくひょう: ひらいた 山の門へ すすもう';return 'もくひょう: 鉄のかぎを 見つけよう（磁石 '+(f.mag?'○':'×')+'　かぎ '+(f.key6?'○':'×')+'）'}
  if(AREA===7){if(f.cleared7)return 'ことばの橋 クリア!';if(f.door7)return 'もくひょう: ひらいた 橋の門へ すすもう';const n=(f.w1?1:0)+(f.w2?1:0)+(f.w3?1:0);return 'もくひょう: しりとりを つないで わたろう（'+n+'/3）'}
  if(AREA===8){if(f.cleared8)return 'こおりの湖 クリア!';if(f.door8)return 'もくひょう: ひらいた 湖の門へ すすもう';return 'もくひょう: 星の実を 取って 氷の門を ひらこう（実 '+(f.fruit8?'○':'×')+'　氷の壁 '+(f.melt8?'○':'×')+'）'}
+ if(AREA===9){if(f.cleared9)return 'にじの泉 クリア!';if(f.door9)return 'もくひょう: ひらいた 泉の門へ すすもう';const n=(f.mixP?1:0)+(f.mixG?1:0)+(f.mixO?1:0);return 'もくひょう: 色水を 混ぜて 3色 作ろう（'+n+'/3）'}
+ if(AREA===10){if(f.cleared10)return 'ちずきごうの村 クリア!';if(f.door10)return 'もくひょう: ひらいた 村の門へ すすもう';const n=(f.stA?1:0)+(f.stB?1:0)+(f.stC?1:0);return 'もくひょう: 地図記号で 建物を 探して スタンプを 集めよう（'+n+'/3）'}
  if(f.cleared2)return 'かずの どうくつ クリア!';if(f.door2)return 'もくひょう: ひらいた ひかりの とびらへ';return 'もくひょう: とびらを ひらこう（かぎ '+(f.key?'○':'×')+'　きそく '+(f.read2?'○':'×')+'　たにを こえた '+(f.far?'○':'×')+'）'}
 let ac=null;function sfx(t){if(EX.mute)return;try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const seqs={ok:[[660,.08],[880,.1],[1175,.14]],pick:[[880,.07],[1320,.12]],bad:[[220,.14],[165,.2]],gate:[[523,.1],[659,.1],[784,.1],[1047,.3]]};let t0=ac.currentTime;for(const[fq,d]of seqs[t]){const o=ac.createOscillator(),g=ac.createGain();o.type='square';o.frequency.value=fq;g.gain.setValueAtTime(.04,t0);g.gain.exponentialRampToValueAtTime(.001,t0+d);o.connect(g);g.connect(ac.destination);o.start(t0);o.stop(t0+d);t0+=d*.9}}catch(e){}}
 function exLoop(t){if(mode!=='explore')return;const dt=Math.min(80,t-(exLast||t));exLast=t;exUpdate(dt);exDraw(t);exRaf=requestAnimationFrame(exLoop)}
