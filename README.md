@@ -1,4 +1,4 @@
-# ミラヴァース (MIRAVERSE)
+# ポケットミステリー (POCKET MYSTERY)
 
 ドット絵の着せ替え・マイルーム・探索ゲーム。`index.html` だけで動きます（外部通信なし、保存はブラウザの localStorage）。
 
