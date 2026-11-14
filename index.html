@@ -23,10 +23,8 @@ canvas{image-rendering:pixelated;max-width:100%}
 <div id="pg1">
 <div class="tabs" id="ctabs"></div>
 <div class="slots" id="atabs" style="margin:0 0 8px"></div>
-<div class="stage"><div><canvas id="big"></canvas></div><div><canvas id="small"></canvas><div class="lab">ちいさい表示<br>(同じ装備データ)</div></div></div>
-<div class="slots" id="stabs"></div><div class="grid" id="grid"></div>
-<div class="mini"><button id="clr">ぜんぶはずす</button></div>
-<div class="sv">コーデ保存(キャラごと3つ)<div class="row" id="sv"></div></div>
+<div class="stage"><div><canvas id="big"></canvas></div><div><canvas id="small"></canvas><div class="lab">ちいさい表示</div></div></div>
+
 </div>
 <div id="pg2" hidden>
 <canvas id="room" style="width:min(100%,384px);margin:0 auto;image-rendering:pixelated;touch-action:none;border-radius:14px;border:2px solid var(--line);display:block"></canvas>
@@ -59,6 +57,7 @@ const mem={};const st={get(k){try{return localStorage.getItem(k)}catch(e){return
 function load(){try{return JSON.parse(st.get('mv_dress1')||'{}')}catch(e){return{}}}
 let S=load();S.cur=S.cur||{};S.slots=S.slots||{};
 function persist(){st.set('mv_dress1',JSON.stringify(S))}
+S.cur={};S.slots={};persist();
 function rot(cells,tx,ty){const xs=cells.map(a=>a[0]),ys=cells.map(a=>a[1]);const cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2;
  return cells.map(([x,y,k])=>[Math.round(tx-(y-cy)),Math.round(ty+(x-cx)),k])}
 function shiftRows(B,sp,u,l){const H=B.length,Wd=B[0].length,out=Array.from({length:H},()=>Array(Wd).fill('.'));
@@ -117,15 +116,7 @@ function thumb(c,id){const cells=D.chars[c].items[id];const xs=cells.map(a=>a[0]
  for(let j=0;j<h;j++)for(let i=0;i<w;i++){if(G[j][i]){x.fillStyle=G[j][i];x.fillRect(i*sc,j*sc,sc,sc)}else{for(const[a,b]of[[1,0],[-1,0],[0,1],[0,-1]]){const xx=i+a,yy=j+b;if(xx>=0&&xx<w&&yy>=0&&yy<h&&G[yy][xx]){x.fillStyle='#2a1f3d';x.fillRect(i*sc,j*sc,sc,sc);break}}}}return cv}
 function ui(){const ct=document.getElementById('ctabs');ct.innerHTML='';for(const c in NAMES){const b=document.createElement('button');b.textContent=NAMES[c];if(c===ch)b.className='on';b.onclick=()=>{ch=c;if(!animList(c).some(x=>x[0]===an))an='idle';fi=0;ui()};ct.appendChild(b)}
  const at=document.getElementById('atabs');at.innerHTML='';for(const[a,n]of animList(ch)){const b=document.createElement('button');b.textContent=n;if(a===an)b.className='on';b.onclick=()=>{an=a;fi=0;ui()};at.appendChild(b)}
- const stb=document.getElementById('stabs');stb.innerHTML='';for(const[s,n]of SLOTS){const b=document.createElement('button');b.textContent=n;if(s===slot)b.className='on';b.onclick=()=>{slot=s;ui()};stb.appendChild(b)}
- const g=document.getElementById('grid');g.innerHTML='';const e=S.cur[ch]||{};
- for(const it of D.items.filter(i=>i.slot===slot)){const b=document.createElement('button');b.className='it'+(e[slot]===it.id?' on':'');b.appendChild(thumb(ch,it.id));const sp=document.createElement('span');sp.textContent=it.name;b.appendChild(sp);
-  b.onclick=()=>{const cur={...(S.cur[ch]||{})};if(cur[slot]===it.id)delete cur[slot];else cur[slot]=it.id;S.cur[ch]=cur;persist();ui()};g.appendChild(b)}
- const sv=document.getElementById('sv');sv.innerHTML='';for(let n=0;n<3;n++){const d=document.createElement('div');const key=ch+n;d.innerHTML='<b>'+(n+1)+'</b>';
-  const a=document.createElement('button');a.textContent='ほぞん';a.onclick=()=>{S.slots[key]={...(S.cur[ch]||{})};persist();ui()};
-  const l=document.createElement('button');l.textContent=S.slots[key]?'よびだす':'(なし)';l.disabled=!S.slots[key];l.onclick=()=>{S.cur[ch]={...S.slots[key]};persist();ui()};d.appendChild(a);d.appendChild(l);sv.appendChild(d)}
  if(mode==='dress')loop()}
-document.getElementById('clr').onclick=()=>{S.cur[ch]={};persist();ui()};
 const big=document.getElementById('big'),small=document.getElementById('small');
 /* ===== マイルーム ===== */
 const RW=384,RH=336,CS=48,COLS=8,ROWS=4,FY0=144,SPD=78,FUR=D.furn;
