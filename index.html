@@ -239,7 +239,7 @@ function setMode(m){mode=m;document.getElementById('pg1').hidden=m!=='dress';doc
  document.querySelectorAll('#mtabs button').forEach(b=>b.className=b.dataset.m===m?'on':'');
  clearTimeout(timer);cancelAnimationFrame(raf);cancelAnimationFrame(exRaf);dir.x=0;dir.y=0;if(typeof stick!=='undefined')stick.a=false;if(m==='dress'){fi=0;ui()}else if(m==='room'){lastT=0;roomUi();raf=requestAnimationFrame(roomLoop)}else{exLast=0;renderLeaders();renderDlg();exRaf=requestAnimationFrame(exLoop)}}
 /* ===== たんけん ===== */
-const TS=48,HT=24,FT=30,FB=11,FHt=8,TSTEP=5,FOL=9,MW=20,MH=18,VW=384,VH=480,PCOL={pink:'#ff8a95',yellow:'#ffe066',blue:'#5fa8f0'},PNAME={pink:'あけぼののかけら',yellow:'ひるのかけら',blue:'よるのかけら'};
+const TS=48,HT=24,FT=30,FB=11,FHt=8,TSTEP=5,FOL=5,MW=20,MH=18,VW=384,VH=480,PCOL={pink:'#ff8a95',yellow:'#ffe066',blue:'#5fa8f0'},PNAME={pink:'あけぼののかけら',yellow:'ひるのかけら',blue:'よるのかけら'};
 const NAMES2={ribbon:'リボン',witch:'まじょ',maid:'メイド',neko:'ねこみみ',miko:'みこ',kohaku:'コハク',astra:'アストラ'};
 const ALL7=['ribbon','witch','maid','neko','miko','kohaku','astra'];
 const ABIL={witch:'read',maid:'read',kohaku:'sniff',neko:'sniff',astra:'fly',miko:'fly',ribbon:'hint'};
